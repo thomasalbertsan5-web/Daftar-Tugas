@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Login - Tugas Kuliah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container" style="max-width: 400px; margin-top: 100px;">
+        <div class="card-form">
+            <h2 style="margin-bottom: 20px; font-weight: 800; color: #2c3e50;">Portal Login 🎓</h2>
+            
+            <form id="loginForm">
+                <!-- Input NIM dengan dukungan Autofill Chrome -->
+                <div style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 15px;">
+                    <label for="nim" style="font-size: 13px; font-weight: bold; color: #555;">NIM:</label>
+                    <input type="text" id="nim" name="username" autocomplete="username" placeholder="Masukkan NIM lu" required style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+                </div>
+
+                <!-- Input Password dengan dukungan Save Password Chrome -->
+                <div style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 20px;">
+                    <label for="ttl" style="font-size: 13px; font-weight: bold; color: #555;">Password (Tanggal Lahir / Dll):</label>
+                    <input type="password" id="ttl" name="password" autocomplete="current-password" placeholder="DDMMYYYY" required style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+                </div>
+
+                <button type="submit" style="width: 100%; padding: 10px; background-color: #3498db; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Masuk</button>
+                <p id="errorMsg" style="color: red; font-size: 12px; margin-top: 10px; display: none;">NIM atau Password salah!</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const nimInput = document.getElementById('nim');
+        const ttlInput = document.getElementById('ttl');
+        const errorMsg = document.getElementById('errorMsg');
+
+        // Atur NIM dan Password (TTL) lu di sini
+        const ADMIN_NIM = "2604030079"; 
+        const ADMIN_TTL = "290305"; 
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            if (nimInput.value === ADMIN_NIM && ttlInput.value === ADMIN_TTL) {
+                localStorage.setItem('isLoggedIn', 'true');
+                
+                // Efek transisi pudar sebelum pindah halaman
+                document.body.style.transition = "opacity 0.3s ease";
+                document.body.style.opacity = "0";
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 300);
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

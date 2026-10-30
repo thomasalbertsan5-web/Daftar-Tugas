@@ -1,0 +1,127 @@
+/* Styling Dasar & Warna Utama */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: url('https://4kwallpapers.com/images/walls/thumbs_3t/19870.jpg') no-repeat center center fixed; /* Sesuaikan nama file gambar lu */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+
+.container {
+    max-width: 600px; /* Batasi lebar maksimal biar gak kepanjangan full */
+    margin: 40px auto; /* "auto" di kanan-kiri bikin posisinya otomatis di tengah! */
+}
+
+/* Bikin semua judul utama (h1) jadi tebal dan kontras */
+h1 {
+    font-weight: 800; /* Angka 700 sampai 900 bikin tulisan makin tebal */
+    color: #ffffff;   /* Warna teks dibuat gelap biar kontras dan jelas dibaca */
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6); /* Efek bayangan tipis agar makin keluar */
+}
+
+/* Kotak Kartu (Card) */
+.card-form, .card-list {
+    background-color: rgba(255, 255, 255, 0.85); /* Angka 0.85 artinya transparan 15% */
+    backdrop-filter: blur(5px); /* Efek blur estetik di belakang kotak */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+h3 {
+    margin-bottom: 15px;
+    color: #34495e;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input, select, button {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Daftar Tugas Styling */
+ul {
+    list-style-type: none;
+}
+
+/* Style untuk item tugas (nanti digenerate JS) */
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.completed span {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Efek Animasi Fade / Pudar */
+body {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style untuk Label Mata Kuliah */
+.course-badge {
+    background-color: #e1f5fe;
+    color: #0288d1;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 5px;
+}

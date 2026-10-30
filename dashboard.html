@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Tugas Kuliah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Bagian Header & Tombol Logout -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <h1 style="margin-bottom: 0; font-size: 24px;">Dashboard Tugas Kuliah 📚</h1>
+            <button id="logoutBtn" style="background-color: #e74c3c; padding: 8px 16px; font-size: 13px; width: auto; border-radius: 6px;">Logout</button>
+        </div>
+        
+        <!-- Sisa form dan daftar tugas di bawahnya tetap sama -->
+
+        <!-- Form buat nambah tugas baru -->
+        <div class="card-form">
+            <h3>Tambah Tugas Baru</h3>
+            <form id="taskForm">
+    <input type="text" id="taskTitle" placeholder="Nama tugas" required>
+    
+    <!-- Ubah id="courseList" jadi id="taskCourse" di sini 👇 -->
+    <select id="taskCourse">
+        <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
+        <option value="Kalkulus">Kalkulus</option>
+        <option value="Berpikir Komputasional & Pemecahan masalah">Berpikir Komputasional & Pemecahan masalah</option>
+        <option value="Logika Matematika">Logika Matematika</option>
+        <option value="Dasar Pemrograman">Dasar Pemrograman</option>
+        <option value="Statistika & Probabilitas">Statistika & Probabilitas</option>
+        <option value="Pengantar Teknologi & Desain">Pengantar Teknologi & Desain</option>
+    </select>
+
+<!-- Ganti baris 8 dan 9 dengan ini -->
+    <label style="font-size: 13px; font-weight: bold; color: #555;">Deadline (Tanggal & Jam):</label>
+    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+        <input type="date" id="taskDate" required style="flex: 2; padding: 8px;">
+        <input type="time" id="taskTime" required style="flex: 1; padding: 8px;">
+    </div>
+    <select id="taskSource">
+        <option value="Google Classroom">Google Classroom</option>
+        <option value="E-Learning">E-Learning Kampus</option>
+        <option value="Lainnya">Lainnya</option>
+    </select>
+    <button type="submit">Tambah Tugas</button>
+</form>
+        </div>
+
+        <!-- Daftar Tugas -->
+        <div class="card-list">
+            <h3>Daftar Tugas</h3>
+            <ul id="taskList"></ul>
+                <!-- Tugas nanti bakal masuk otomatis lewat JavaScript di sini -->
+        </div>
+    </div>
+
+    <!-- Link JavaScript -->
+   <!-- Pastikan baris ini ada di paling bawah dashboard.html -->
+    <script src="script.js"></script>
+
+    <script>
+        // Cek login & tombol logout
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                document.body.style.transition = "opacity 0.3s ease";
+                document.body.style.opacity = "0";
+                setTimeout(() => {
+                    localStorage.removeItem('isLoggedIn');
+                    window.location.href = 'index.html';
+                }, 300);
+            });
+        }
+    </script>
+</body>
+</html>
