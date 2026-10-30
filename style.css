@@ -7,13 +7,12 @@
 }
 
 body {
-    background: url('https://4kwallpapers.com/images/walls/thumbs_3t/19870.jpg') no-repeat center center fixed; /* Sesuaikan nama file gambar lu */
-    background-size: cover;
-    font-family: Arial, sans-serif;
+    /* Ganti bagian background di sini dengan pilihan estetik */
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-    animation: fadeIn 0.4s ease-in-out;
+    padding: 0;
 }
 
 
