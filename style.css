@@ -23,9 +23,10 @@ body {
 }
 
 /* Bikin semua judul utama (h1) jadi tebal dan kontras */
+/* Bikin semua judul utama (h1) jadi tebal dan kontras */
 h1 {
     font-weight: 800; /* Angka 700 sampai 900 bikin tulisan makin tebal */
-    color: #ffffff;   /* Warna teks dibuat gelap biar kontras dan jelas dibaca */
+    color: #2c3e50;   /* Warna teks dibuat gelap biar kontras dan jelas dibaca */
     text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6); /* Efek bayangan tipis agar makin keluar */
 }
 
