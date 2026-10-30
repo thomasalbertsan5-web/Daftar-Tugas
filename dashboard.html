@@ -9,75 +9,96 @@
 <body>
 
     <div class="container">
-        <!-- Bagian Header & Tombol Logout -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-            <h1 style="margin-bottom: 0; font-size: 24px;">Dashboard Tugas Kuliah 📚</h1>
-            <button id="logoutBtn" style="background-color: #e74c3c; padding: 8px 16px; font-size: 13px; width: auto; border-radius: 6px;">Logout</button>
+        <!-- Header Dashboard -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h1 style="font-weight: 800; color: #2c3e50; font-size: 24px;">Dashboard Tugas Kuliah 📚</h1>
+            <button onclick="logout()" style="background-color: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;">Logout</button>
         </div>
-        
-        <!-- Sisa form dan daftar tugas di bawahnya tetap sama -->
 
-        <!-- Form buat nambah tugas baru -->
+        <!-- Form Tambah Tugas -->
         <div class="card-form">
-            <h3>Tambah Tugas Baru</h3>
+            <h3 style="margin-bottom: 15px; font-weight: 700; color: #333;">Tambah Tugas Baru</h3>
             <form id="taskForm">
-    <input type="text" id="taskTitle" placeholder="Nama tugas" required>
-    
-    <!-- Ubah id="courseList" jadi id="taskCourse" di sini 👇 -->
-    <select id="taskCourse">
-        <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
-        <option value="Kalkulus">Kalkulus</option>
-        <option value="Berpikir Komputasional & Pemecahan masalah">Berpikir Komputasional & Pemecahan masalah</option>
-        <option value="Logika Matematika">Logika Matematika</option>
-        <option value="Dasar Pemrograman">Dasar Pemrograman</option>
-        <option value="Statistika & Probabilitas">Statistika & Probabilitas</option>
-        <option value="Pengantar Teknologi & Desain">Pengantar Teknologi & Desain</option>
-    </select>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="text" id="taskTitle" placeholder="Nama tugas (Contoh: Makalah PBO)" required style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+                    
+                    <select id="taskCourse" style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+                        <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
+                        <option value="Kalkulus">Kalkulus</option>
+                        <option value="Berpikir Komputasional & Pemecahan masalah">Berpikir Komputasional & Pemecahan masalah</option>
+                        <option value="Logika Matematika">Logika Matematika</option>
+                        <option value="Dasar Pemrograman">Dasar Pemrograman</option>
+                        <option value="Statistika & Probabilitas">Statistika & Probabilitas</option>
+                        <option value="Pengantar Teknologi & Desain">Pengantar Teknologi & Desain</option>
+                    </select>
 
-<!-- Ganti baris 8 dan 9 dengan ini -->
-    <label style="font-size: 13px; font-weight: bold; color: #555;">Deadline (Tanggal & Jam):</label>
-    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
-        <input type="date" id="taskDate" required style="flex: 2; padding: 8px;">
-        <input type="time" id="taskTime" required style="flex: 1; padding: 8px;">
-    </div>
-    <select id="taskSource">
-        <option value="Google Classroom">Google Classroom</option>
-        <option value="E-Learning">E-Learning Kampus</option>
-        <option value="Lainnya">Lainnya</option>
-    </select>
-    <button type="submit">Tambah Tugas</button>
-</form>
+                    <!-- Input Tanggal & Jam Dropdown 24 Jam (00 - 23) -->
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="date" id="taskDate" required style="flex: 2; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+                        
+                        <!-- Dropdown Jam (00-23) -->
+                        <select id="taskHour" style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="00">00</option>
+                        </select>
+                        
+                        <span style="font-weight: bold; color: #555;">:</span>
+
+                        <!-- Dropdown Menit -->
+                        <select id="taskMinute" style="flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #ccc;">
+                            <option value="00">00</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </div>
+
+                    <select id="taskSource" style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+                        <option value="Google Classroom">Google Classroom</option>
+                        <option value="E-Learning Kampus">E-Learning Kampus</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+
+                    <button type="submit" style="padding: 10px; background-color: #3498db; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Tambah Tugas</button>
+                </div>
+            </form>
         </div>
 
         <!-- Daftar Tugas -->
         <div class="card-list">
-            <h3>Daftar Tugas</h3>
-            <ul id="taskList"></ul>
-                <!-- Tugas nanti bakal masuk otomatis lewat JavaScript di sini -->
+            <h3 style="margin-bottom: 15px; font-weight: 700; color: #333;">Daftar Tugas</h3>
+            <ul id="taskList" style="list-style: none; padding: 0;">
+                <!-- Tugas akan muncul di sini secara otomatis -->
+            </ul>
         </div>
     </div>
 
-    <!-- Link JavaScript -->
-   <!-- Pastikan baris ini ada di paling bawah dashboard.html -->
-    <script src="script.js"></script>
-
     <script>
-        // Cek login & tombol logout
         if (localStorage.getItem('isLoggedIn') !== 'true') {
             window.location.href = 'index.html';
         }
 
-        const logoutBtn = document.getElementById('logoutBtn');
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', () => {
-                document.body.style.transition = "opacity 0.3s ease";
-                document.body.style.opacity = "0";
-                setTimeout(() => {
-                    localStorage.removeItem('isLoggedIn');
-                    window.location.href = 'index.html';
-                }, 300);
-            });
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = 'index.html';
         }
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
