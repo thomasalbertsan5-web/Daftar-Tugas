@@ -3,21 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskTitle = document.getElementById('taskTitle');
     const taskCourse = document.getElementById('taskCourse');
     const taskDate = document.getElementById('taskDate');
-    const taskTime = document.getElementById('taskTime');
+    const taskHour = document.getElementById('taskHour');
+    const taskMinute = document.getElementById('taskMinute');
     const taskSource = document.getElementById('taskSource');
     const taskList = document.getElementById('taskList');
 
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-
-    // Fitur: Pencet Enter di kotak tanggal langsung loncat ke kotak jam
-    if (taskDate && taskTime) {
-        taskDate.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                taskTime.focus();
-            }
-        });
-    }
 
     // Fungsi untuk menghitung sisa waktu mundur (Countdown)
     function getCountdown(deadlineDateTime) {
@@ -53,12 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
             li.className = `task-item ${task.completed ? 'completed' : ''}`;
             
             const countdownText = getCountdown(task.deadline);
+            // Format tampilan tanggal & jam
+            const formattedDeadline = task.deadline.replace('T', ' Pukul ');
 
             li.innerHTML = `
-                <div>
+                <div style="margin-bottom: 8px;">
                     <strong>${task.title}</strong> 
                     <span class="course-badge">${task.course}</span><br>
-                    <small>📅 Deadline: ${task.deadline.replace('T', ' Jam ')} | 📌 ${task.source}</small><br>
+                    <small>📅 Deadline: ${formattedDeadline} | 📌 ${task.source}</small><br>
                     <small style="display: inline-block; margin-top: 4px;">${countdownText}</small>
                 </div>
                 <div>
@@ -73,10 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tambah tugas baru
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        
+        const timeString = `${taskHour.value}:${taskMinute.value}:00`;
+        const finalDeadline = `${taskDate.value}T${timeString}`;
+
         const newTask = {
             title: taskTitle.value,
             course: taskCourse.value,
-            deadline: `${taskDate.value}T${taskTime.value}`, // Digabung otomatis tanggal dan jamnya
+            deadline: finalDeadline,
             source: taskSource.value,
             completed: false
         };
@@ -101,6 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderTasks();
 
-    // Jalankan update hitung mundur setiap 1 detik secara otomatis
+    // Jalankan update hitung mundur setiap 1 detik
     setInterval(renderTasks, 1000);
 });
