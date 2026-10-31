@@ -3,60 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Login - Tugas Kuliah</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Daftar Tugas Kuliah</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Judul Dashboard Dijamin Putih Bersih */
+        .dashboard-title {
+            color: #ffffff !important;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .dashboard-subtitle {
+            color: #94a3b8;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 12px 16px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        .input-group button {
+            padding: 12px 20px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .input-group button:hover {
+            background: #4f46e5;
+        }
+
+        .task-list {
+            list-style: none;
+            max-height: 350px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .task-item:hover {
+            background: rgba(15, 23, 42, 0.7);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .task-text {
+            color: #f8fafc;
+            font-size: 15px;
+        }
+
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: #64748b;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-action {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .btn-complete {
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-complete:hover {
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        .btn-delete {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .btn-delete:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container" style="max-width: 400px; margin-top: 100px;">
-        <div class="card-form">
-            <h2 style="margin-bottom: 20px; font-weight: 800; color: #2c3e50;">Portal Login 🎓</h2>
-            
-            <form id="loginForm">
-                <!-- Input NIM dengan dukungan Autofill Chrome -->
-                <div style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 15px;">
-                    <label for="nim" style="font-size: 13px; font-weight: bold; color: #555;">NIM:</label>
-                    <input type="text" id="nim" name="username" autocomplete="username" placeholder="Masukkan NIM lu" required style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
-                </div>
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">Dashboard Tugas Kuliah 📚</h1>
+        <p class="dashboard-subtitle">Kelola dan pantau tenggat waktu tugasmu dengan mudah</p>
 
-                <!-- Input Password dengan dukungan Save Password Chrome -->
-                <div style="display: flex; flex-direction: column; gap: 5px; margin-bottom: 20px;">
-                    <label for="ttl" style="font-size: 13px; font-weight: bold; color: #555;">Password (Tanggal Lahir / Dll):</label>
-                    <input type="password" id="ttl" name="password" autocomplete="current-password" placeholder="DDMMYYYY" required style="padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
-                </div>
-
-                <button type="submit" style="width: 100%; padding: 10px; background-color: #3498db; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Masuk</button>
-                <p id="errorMsg" style="color: red; font-size: 12px; margin-top: 10px; display: none;">NIM atau Password salah!</p>
-            </form>
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="Tambah tugas kuliah baru...">
+            <button id="addTaskBtn">Tambah</button>
         </div>
+
+        <ul class="task-list" id="taskList">
+            <!-- Daftar tugas akan muncul di sini secara otomatis -->
+        </ul>
+        
+        <div id="emptyState" class="empty-state">Belum ada tugas yang ditambahkan. Yuk mulai catat tugasmu! ✨</div>
     </div>
 
     <script>
-        const loginForm = document.getElementById('loginForm');
-        const nimInput = document.getElementById('nim');
-        const ttlInput = document.getElementById('ttl');
-        const errorMsg = document.getElementById('errorMsg');
+        const taskInput = document.getElementById('taskInput');
+        const addTaskBtn = document.getElementById('addTaskBtn');
+        const taskList = document.getElementById('taskList');
+        const emptyState = document.getElementById('emptyState');
 
-        // Atur NIM dan Password (TTL) lu di sini
-        const ADMIN_NIM = "2604030079"; 
-        const ADMIN_TTL = "290305"; 
+        let tasks = [];
 
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        function renderTasks() {
+            taskList.innerHTML = '';
             
-            if (nimInput.value === ADMIN_NIM && ttlInput.value === ADMIN_TTL) {
-                localStorage.setItem('isLoggedIn', 'true');
-                
-                // Efek transisi pudar sebelum pindah halaman
-                document.body.style.transition = "opacity 0.3s ease";
-                document.body.style.opacity = "0";
-                setTimeout(() => {
-                    window.location.href = 'dashboard.html';
-                }, 300);
+            if (tasks.length === 0) {
+                emptyState.style.display = 'block';
+                return;
             } else {
-                errorMsg.style.display = 'block';
+                emptyState.style.display = 'none';
             }
+
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.className = `task-item ${task.completed ? 'completed' : ''}`;
+                
+                li.innerHTML = `
+                    <span class="task-text">${task.text}</span>
+                    <div class="task-actions">
+                        <button class="btn-action btn-complete" onclick="toggleTask(${index})">
+                            ${task.completed ? 'Batal' : 'Selesai'}
+                        </button>
+                        <button class="btn-action btn-delete" onclick="deleteTask(${index})">Hapus</button>
+                    </div>
+                `;
+                taskList.appendChild(li);
+            });
+        }
+
+        function addTask() {
+            const text = taskInput.value.trim();
+            if (text === '') return;
+
+            tasks.push({ text: text, completed: false });
+            taskInput.value = '';
+            renderTasks();
+        }
+
+        function toggleTask(index) {
+            tasks[index].completed = !tasks[index].completed;
+            renderTasks();
+        }
+
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            renderTasks();
+        }
+
+        addTaskBtn.addEventListener('click', addTask);
+        taskInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addTask();
         });
+
+        renderTasks();
     </script>
 </body>
 </html>
